@@ -5,17 +5,6 @@ let board = ['', '', '', '', '', '', '', '', '']
 let counter = 0
 let gameWin = false
 
-const game = {
-    cells,
-    title,
-    button,
-    board,
-    counter,
-    gameWin,
-
-    
-}
-
 const initGame = () => {
     for (let i of cells) {
         const cell = i.getAttribute('data-cell')
