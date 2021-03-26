@@ -5,26 +5,27 @@ let board = ['', '', '', '', '', '', '', '', '']
 let counter = 0
 let gameWin = false
 
-const initGame = () => {
-    for (let i of cells) {
-        const cell = i.getAttribute('data-cell')
+const Game =  {
+    init () {
+        for (let i of cells) {
+            const cell = i.getAttribute('data-cell')
 
-        i.addEventListener('click', () => {  
-            if (gameWin == false) {
-                if (board[cell] != '') {
-                    alert('Cell already selected')
-                } else if (counter%2 == 0) {
-                    board[cell] = i.innerHTML = 'X'
-                    counter++ 
-                } else {
-                    board[cell] = i.innerHTML = 'O'
-                    counter++ 
+            i.addEventListener('click', () => {  
+                if (gameWin == false) {
+                    if (board[cell] != '') {
+                        alert('Cell already selected')
+                    } else if (counter%2 == 0) {
+                        board[cell] = i.innerHTML = 'X'
+                        counter++ 
+                    } else {
+                        board[cell] = i.innerHTML = 'O'
+                        counter++ 
+                    }
                 }
-            }
-            console.log(board)
-            console.log(counter)
-            checkWinner()
-        })
+                checkWinner()
+            })
+        }
+        restartGame()
     }
 }
 
@@ -73,5 +74,4 @@ const restartGame = () => {
     })
 }
 
-initGame()
-restartGame()
+Game.init()
