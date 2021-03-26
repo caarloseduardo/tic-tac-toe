@@ -1,34 +1,45 @@
 const cells = document.querySelectorAll('.cell')
 const title = document.querySelector('.title')
 const button = document.querySelector('#gameButton')
-
 let board = ['', '', '', '', '', '', '', '', '']
 let counter = 0
 let gameWin = false
 
-// Data cell attributes
-for (let i of cells) {
-    const cell = i.getAttribute('data-cell')
+const game = {
+    cells,
+    title,
+    button,
+    board,
+    counter,
+    gameWin,
 
-    i.addEventListener('click', () => {  
-        if (gameWin == false) {
-            if (board[cell] != '') {
-                alert('Cell already selected')
-            } else if (counter%2 == 0) {
-                board[cell] = i.innerHTML = 'X'
-                counter++ 
-            } else {
-                board[cell] = i.innerHTML = 'O'
-                counter++ 
-            }
-        }
-        console.log(board)
-        gameWinner()
-    })
+    
 }
 
-// Game winner
-function gameWinner() {
+const initGame = () => {
+    for (let i of cells) {
+        const cell = i.getAttribute('data-cell')
+
+        i.addEventListener('click', () => {  
+            if (gameWin == false) {
+                if (board[cell] != '') {
+                    alert('Cell already selected')
+                } else if (counter%2 == 0) {
+                    board[cell] = i.innerHTML = 'X'
+                    counter++ 
+                } else {
+                    board[cell] = i.innerHTML = 'O'
+                    counter++ 
+                }
+            }
+            console.log(board)
+            console.log(counter)
+            checkWinner()
+        })
+    }
+}
+
+const checkWinner = () => {
     for (let i=0; i<=7; i++) {
         const winningConditions = [
             [0, 1, 2],
@@ -58,14 +69,19 @@ function gameWinner() {
     }
 }
 
-// Restart game
-button.addEventListener('click', () => {
-    button.innerHTML = 'Restart Game'
-    title.innerHTML = 'Tic Tac Toe'
-    for (i=0; i<=9; i++) {
-        if (cells[i] != undefined) {
-            cells[i].innerHTML = ''
+const restartGame = () => {
+    button.addEventListener('click', () => {
+        gameWin = false
+        button.innerHTML = 'Restart Game'
+        title.innerHTML = 'Tic Tac Toe'
+        for (i=0; i<=9; i++) {
+            if (cells[i] != undefined) {
+                cells[i].innerHTML = ''
+            }
         }
-    }
-    board = ['', '', '', '', '', '', '', '', '']
-})
+        board = ['', '', '', '', '', '', '', '', '']
+    })
+}
+
+initGame()
+restartGame()
