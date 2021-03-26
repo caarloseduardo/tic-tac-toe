@@ -62,6 +62,7 @@ const restartGame = () => {
     button.addEventListener('click', () => {
         gameWin = false
         counter = 0
+        board = ['', '', '', '', '', '', '', '', '']
         button.innerHTML = 'Restart Game'
         title.innerHTML = 'Tic Tac Toe'
         for (i=0; i<=9; i++) {
@@ -69,7 +70,6 @@ const restartGame = () => {
                 cells[i].innerHTML = ''
             }
         }
-        board = ['', '', '', '', '', '', '', '', '']
     })
 }
 
