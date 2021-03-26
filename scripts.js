@@ -61,6 +61,7 @@ const checkWinner = () => {
 const restartGame = () => {
     button.addEventListener('click', () => {
         gameWin = false
+        counter = 0
         button.innerHTML = 'Restart Game'
         title.innerHTML = 'Tic Tac Toe'
         for (i=0; i<=9; i++) {
